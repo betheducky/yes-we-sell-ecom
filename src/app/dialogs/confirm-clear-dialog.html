@@ -1,0 +1,10 @@
+<div class="dialog__container">
+    <h3>Deleting ALL Products</h3>
+    <p>Are you sure you want to delete all of your {{ data.productCount }} product(s)?</p>
+    <p>Remember, you've gotta sell to keep the lights on...and you need items on the shelf to sell...</p>
+    <em>This action cannot be undone.</em>
+    <div class="btn__container">
+        <button class="btn btn-danger" (click)="dialogRef.close(data)">Clear All</button>
+        <button class="btn btn-secondary" (click)="dialogRef.close()">Nevermind</button>
+    </div>
+</div>

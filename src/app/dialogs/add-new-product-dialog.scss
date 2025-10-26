@@ -1,0 +1,43 @@
+.dialog__container {
+  border-radius: 0.8rem;
+  background-color: white;
+  padding: 1rem;
+
+  h3 {
+    padding-bottom: 1rem;
+    margin-bottom: .5rem;
+    border-bottom: 1px solid black;
+  }
+
+  p {
+    width: 80%;
+    margin: auto;
+  }
+
+  h3,
+  p {
+    text-align: center;
+    color: black;
+  }
+
+  .form__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: -1rem;
+
+    input,
+    button {
+      margin: 0.25rem 0;
+    }
+
+    textarea {
+      margin-bottom: 2rem;
+    }
+
+    button {
+      padding: 0.5rem 0.25rem;
+      margin: 0.5rem 0;
+    }
+  }
+}

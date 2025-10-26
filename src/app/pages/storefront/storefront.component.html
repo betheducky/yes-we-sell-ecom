@@ -1,0 +1,31 @@
+<header>
+  <h1>"Yes, We Sell It!"</h1>
+  <h5>Online Storefront</h5>
+</header>
+<main>
+  <section class="store__instructions">
+    <i>(technically, we don't, but that's where you come in...)</i>
+    <h5>
+      Click below to add a new product to the storefront (so we can sell it).
+    </h5>
+    <div class="store__btn-container">
+      <button class="btn btn-light" (click)="openAddNewProductDialog()">
+        + Product
+      </button>
+      <button class="btn btn-light" (click)="handleClearInventory()">
+        Clear Entire Inventory
+      </button>
+    </div>
+  </section>
+  <section class="store__inventory">
+    @if (products.length === 0) {
+    <i>Gee it's quiet in here, heh-heh...</i>
+    } @for(product of products; track products){
+    <app-product
+      [product]="product"
+      (deleteProduct)="handleDeleteProduct($event)"
+      (buyProduct)="handleBuyProduct($event)"
+    ></app-product>
+    }
+  </section>
+</main>

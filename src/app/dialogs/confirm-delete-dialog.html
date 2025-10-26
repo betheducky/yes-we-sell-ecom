@@ -1,0 +1,10 @@
+<div class="dialog__container">
+    <h3>Deleting {{ data.title }}</h3>
+    <p>Are you sure you want to delete {{ data.title }} from your storefront?</p>
+    <p>They only cost ${{ data.cost }} and would probably do really well on your shelves...especially in this economy.</p>
+    <em>This action cannot be undone.</em>
+    <div class="btn__container">
+        <button class="btn btn-danger" (click)="dialogRef.close(data)">Delete</button>
+        <button class="btn btn-secondary" (click)="dialogRef.close()">Cancel</button>
+    </div>
+</div>

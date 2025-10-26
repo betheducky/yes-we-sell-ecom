@@ -1,0 +1,11 @@
+<div class="card product__container" style="width: 18rem">
+  <div class="product__img card-img-top">
+    <button class="btn btn-close btn__remove" (click)="removeSelected()"></button>
+  </div>
+  <div class="product__content">
+      <h5 class="product__title">{{ product.title }}</h5>
+    <div class="product__cost">${{ product.cost }}</div>
+    <div class="product__details">{{ product.description }}</div>
+    <button class="btn btn-primary" (click)="simulatePurchase()">Buy Now</button>
+  </div>
+</div>
