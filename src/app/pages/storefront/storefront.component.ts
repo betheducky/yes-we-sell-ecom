@@ -125,6 +125,8 @@ export class AddNewProductDialog {
 
   async generateProduct(event: Event) {
     event.preventDefault();
+    console.log('Event:', event);
+    console.log('Input:', this.data.title);
     this.loading = true;
 
     try {
