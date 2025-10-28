@@ -42,7 +42,8 @@ header {
     display: flex;
     justify-content: center;
     margin: 1rem auto;
-    width: 80%;
+    width: 30rem;
+    max-width: 80%;
 
     @media (max-width: 375px) {
       flex-direction: column;

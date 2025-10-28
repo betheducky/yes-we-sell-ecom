@@ -9,9 +9,11 @@ import {
   DialogModule,
 } from '@angular/cdk/dialog';
 import { FormsModule } from '@angular/forms';
+import { AiAssistantService } from '../../services/ai-assistant.service';
 
 export interface DialogData {
   id?: string;
+  imgUrl: string;
   title: string;
   cost: number;
   description: string;
@@ -37,11 +39,11 @@ export class StorefrontComponent implements OnInit {
   openAddNewProductDialog(): void {
     const dialogRef = this.dialog.open<DialogData>(AddNewProductDialog, {
       width: '30rem',
-      height: '30rem',
+      minHeight: '30rem',
       data: {
-        title: 'New Product',
+        title: '',
         cost: 0,
-        description: 'Details as follow...',
+        description: '',
       },
     });
     dialogRef.closed.subscribe((result) => {
@@ -76,7 +78,7 @@ export class StorefrontComponent implements OnInit {
           this.loadInventory();
           window.alert('Welp, the shelves are empty...time for lunch??');
         } else {
-          window.alert(
+          console.log(
             `Clear Inventory process aborted; your product count of ${this.products.length} remains`
           );
         }
@@ -105,7 +107,7 @@ export class StorefrontComponent implements OnInit {
   }
 }
 
-// Dialog Components
+// Add Product Dialog
 
 @Component({
   selector: 'add-new-product-dialog',
@@ -117,7 +119,28 @@ export class StorefrontComponent implements OnInit {
 export class AddNewProductDialog {
   dialogRef = inject<DialogRef<DialogData>>(DialogRef<DialogData>);
   data = inject(DIALOG_DATA);
+  loading: boolean = false;
+
+  constructor(private aiService: AiAssistantService){}
+
+  async generateProduct(event: Event) {
+    event.preventDefault();
+    this.loading = true;
+
+    try {
+      const descriptionData = await this.aiService.generateProductDetails(this.data.title);
+      const imageData = await this.aiService.generateProductImage(this.data.title);
+
+      this.data.title = descriptionData;
+      this.data.img = imageData;
+
+    } catch (error){
+      console.error("Generation failed!", error);
+    }
+  }
 }
+
+// Delete Product Dialog
 
 @Component({
   selector: 'confirm-delete-dialog',
@@ -130,6 +153,8 @@ export class ConfirmDeleteDialog {
   dialogRef = inject<DialogRef>(DialogRef);
   data = inject(DIALOG_DATA);
 }
+
+// Clear All Dialog
 
 @Component({
   selector: 'confirm-clear-dialog',

@@ -16,7 +16,8 @@ export class ProductService {
   }
 
   addProduct(product: Omit<Product, 'id'>): Product {
-    const newProduct = {...product, id: uuidv4()};
+    const imgSrc = 'assets/test-img.jpg';
+    const newProduct = {...product, id: uuidv4(), img: imgSrc};
     const products = this.getProducts();
     products.push(newProduct);
 

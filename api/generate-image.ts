@@ -1,8 +1,9 @@
 import OpenAI from 'openai';
+import {VercelRequest, VercelResponse} from '@vercel/node';
 
-const client = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+const client = new OpenAI({apiKey: process.env['YES_WE_SELL_API_KEY']});
 
-export default async function handler(req, res) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
     try {
         const {productTitle} = req.body;
 
@@ -15,8 +16,8 @@ export default async function handler(req, res) {
             size: '512x512',
         });
 
-        res.status(200).json({ imageUrl: image.data![0].url });
-    } catch (error: any) {
-        res.status(500).json({ error: error.message })
+        return res.status(200).json({ imageUrl: image.data![0].url });
+    } catch (err: any) {
+        return res.status(500).json({ error: err.message });
     }
 }

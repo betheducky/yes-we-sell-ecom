@@ -24,7 +24,29 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: -1rem;
+
+    .generate__container {
+      margin: 0;
+      padding: 0;
+      height: auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      input {
+        min-width: auto;
+        margin-right: 1rem;
+      }
+
+      button {
+        padding: .5rem 1rem;
+      }
+    }
+
+    label {
+      color: black;
+      margin-top: .5rem;
+    }
 
     input,
     button {
@@ -33,6 +55,14 @@
 
     textarea {
       margin-bottom: 2rem;
+    }
+
+    .generate__preview-img {
+      width: auto;
+
+      img {
+        width: 100%;
+      }
     }
 
     button {

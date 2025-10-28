@@ -3,12 +3,18 @@
     <p>To create a product listing, enter item details and a cost of at least $1.00.</p>
     <form class="form__container" (ngSubmit)="dialogRef.close(data)">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" [(ngModel)]="data.title" placeholder="Product Name">
+        <div class="generate__container">
+            <input type="text" id="title" name="title" [(ngModel)]="data.title" placeholder="Product Name">
+            <button class="btn btn-primary" (click)="generateProduct($event)">Generate (AI)</button>
+        </div>
         <label for="cost">Cost</label>
         <input type="number" id="cost" name="cost" [(ngModel)]="data.cost">
         <label for="description">Description</label>
         <textarea id="description" type="text" id="description" name="description" [(ngModel)]="data.description" placeholder="Product details..."></textarea>
-        <button type="submit" class="btn btn-primary" [disabled]="data.cost < 1">Add Product</button>
+        @if(!data.img){
+            <div class="generate__preview-img"><img src="/assets/test-img.jpg" alt="Temp Image"></div>
+        }
+        <button type="submit" class="btn btn-primary" [disabled]="data.cost < 1 || !data.title">Add Product</button>
         <button class="btn btn-secondary" (click)="dialogRef.close()">Cancel</button>
     </form> 
 </div>
